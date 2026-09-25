@@ -1,0 +1,6 @@
+.data
+.claude
+dev-server.js
+README.md
+.env*
+.vercel

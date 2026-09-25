@@ -1,0 +1,10 @@
+{
+  "name": "golf-weekend-scorer",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
