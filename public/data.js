@@ -14,7 +14,7 @@
       si:    [15, 5, 13, 17, 1, 11, 3, 9, 7, 10, 12, 6, 2, 14, 16, 4, 18, 8],
     },
     day2: {
-      key: 'day2', day: 'Day 2', name: 'Earls Course', format: 'Stableford pairs',
+      key: 'day2', day: 'Day 2', name: 'Earls Course', format: 'Bonus Better Ball',
       tee: 'Yellow', cr: 72.3, slope: 127,
       yards: [405, 184, 384, 611, 409, 498, 396, 128, 406, 564, 143, 404, 142, 338, 350, 437, 344, 531],
       par:   [4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 3, 4, 3, 4, 4, 4, 4, 5],

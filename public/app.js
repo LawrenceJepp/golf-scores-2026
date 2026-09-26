@@ -203,14 +203,18 @@
     return TEAM_KEYS.map((k) => {
       const [a, b] = t[k];
       const pa = pointsFor(st, a), pb = pointsFor(st, b);
-      let bonus = 0;
+      // Better ball: the team takes the better of the two partners' points on each hole.
+      // Until both have played a hole, it counts whoever has; the bonus needs both scores.
+      let best = 0, bonus = 0;
       for (let i = 0; i < 18; i++) {
+        if (pa[i] == null && pb[i] == null) continue;
+        best += Math.max(pa[i] ?? 0, pb[i] ?? 0);
         if (pa[i] == null || pb[i] == null) continue;
         if (pa[i] >= 2 && pb[i] >= 2) bonus++;
         else if (pa[i] === 0 && pb[i] === 0) bonus--;
       }
       const players = [{ p: a, thru: played(pa), score: sum(pa) }, { p: b, thru: played(pb), score: sum(pb) }];
-      return { k, players, bonus, total: players[0].score + players[1].score + bonus };
+      return { k, players, best, bonus, total: best + bonus };
     }).sort((x, y) => y.total - x.total || x.k.localeCompare(y.k));
   }
 
@@ -258,7 +262,7 @@
         <span class="meta">${status('day1')}${leader1 ? ' · ' + leader1 : ''}</span>
       </button>
       <button class="tile t-day2" data-go="day2">
-        <span class="tag">Day 2</span><h2>Earls Course</h2><p>Stableford pairs + bonus points</p>
+        <span class="tag">Day 2</span><h2>Earls Course</h2><p>Bonus Better Ball</p>
         <span class="meta">${status('day2')}${leader2 ? ' · ' + leader2 : ''}</span>
       </button>
       <button class="tile t-hcp ${n < 10 ? 'start' : ''}" data-go="handicaps">
@@ -389,11 +393,11 @@
     }).join('');
     return live() + `<table class="lb lb2">
       <thead>
-        <tr><th rowspan="2"></th><th rowspan="2" class="l">Team</th><th colspan="2" class="p1">Player 1</th><th colspan="2" class="p2">Player 2</th><th rowspan="2">Bonus</th><th rowspan="2">Total<br>Score</th></tr>
+        <tr><th rowspan="2"></th><th rowspan="2" class="l">Team</th><th colspan="2" class="p1">Player 1</th><th colspan="2" class="p2">Player 2</th><th rowspan="2">Bonus</th><th rowspan="2">Final<br>Score</th></tr>
         <tr><th class="p1">Thru</th><th class="p1">Score</th><th class="p2">Thru</th><th class="p2">Score</th></tr>
       </thead>
       <tbody>${trs}</tbody></table>
-      <p class="note">Stableford off Earls course handicaps. Bonus per hole: <b>+1</b> if both partners score 2+ points, <b>−1</b> if both score 0. Total = both players' points + bonus.</p>`;
+      <p class="note">Stableford off Earls course handicaps. Bonus per hole: <b>+1</b> if both partners score 2+ points, <b>−1</b> if both score 0. Final Score = the better of the two partners' points on each hole + bonus. Until both partners have played a hole, it counts whoever has.</p>`;
   }
 
   function scoreClass(v, par) {

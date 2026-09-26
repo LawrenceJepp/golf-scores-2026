@@ -11,7 +11,7 @@ A mobile web app for scoring a two-round golf weekend at **The Warwickshire Golf
 | | Day 1 | Day 2 |
 |---|---|---|
 | **Course** | Kings Course, Yellow tees | Earls Course, Yellow tees |
-| **Format** | Individual nett stroke play | Stableford pairs + team bonus points |
+| **Format** | Individual nett stroke play | Bonus Better Ball (Stableford) |
 | **Handicap used** | Kings Course handicap | Earls Course handicap |
 | **Ratings** | CR 72.0 · Slope 132 · Par 72 · 6,505 yds | CR 72.3 · Slope 127 · Par 72 · 6,674 yds |
 
@@ -87,8 +87,8 @@ Strokes are given by **stroke index (S.I.)**, starting from S.I. 1. A course han
 - After 18 holes: **Nett = Total − Kings course handicap**.
 - Lowest nett leads. Ties after 18 holes are split on **countback** (last 9, then last 6, last 3 and last hole, with handicap reduced proportionally).
 
-### Day 2 – Stableford
-Points per hole, based on the nett score (strokes minus handicap strokes on that hole):
+### Day 2 – Bonus Better Ball
+Each player scores individual **Stableford** points per hole, based on the nett score (strokes minus handicap strokes on that hole):
 
 | Nett score | Points |
 |---|---|
@@ -99,12 +99,24 @@ Points per hole, based on the nett score (strokes minus handicap strokes on that
 | Eagle | 4 |
 | Albatross | 5 |
 
-### Day 2 – Team bonus points
-Checked on every hole for each team:
+**Better ball:** on each hole the team scores the **better** of the two partners' points.
+
+**Bonus points**, checked on every hole for each team:
 - **+1** if **both** partners score **2 or more** points.
 - **−1** if **both** partners score **0** points.
 
-**Team total = Player 1 points + Player 2 points + bonus.** Highest total wins.
+**Final Score = sum of the better ball on each hole + bonus.** Highest Final Score wins. The leaderboard also shows each player's own running Stableford total.
+
+Team-mates play in different groups, so one may be ahead of the other. Until both have played a hole, the team counts whoever has. The bonus for that hole is added once both scores are in.
+
+**Example (Team A):**
+
+| Hole | A1 points | A2 points | Better ball | Bonus | Final Score (running) |
+|---|---|---|---|---|---|
+| 1 | 3 | 1 | 3 | 0 | 3 |
+| 2 | 2 | 2 | 2 | +1 | 6 |
+| 3 | 0 | 0 | 0 | −1 | 5 |
+| 4 | 1 | 0 | 1 | 0 | 6 |
 
 ---
 
